@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/pform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Player Name and Goals"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/pname"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pform"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Player Name"
+        />
+
+    <EditText
+        android:id="@+id/pgoal"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pname"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter No of Goals"
+        />
+
+    <Button
+        android:id="@+id/pbutton"
+        android:text="Submit Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pgoal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"/>
+
+    <Button
+        android:id="@+id/pshowbutton"
+        android:text="Show Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pgoal"
+        android:layout_toRightOf="@+id/pbutton"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"/>
+
+
+</RelativeLayout>

@@ -54,7 +54,7 @@ public class ShowContent extends AppCompatActivity implements LoaderManager.Load
 
     public void setdata(){
         cr = getApplicationContext().getContentResolver();
-        String[] projection = {ProviderFile.ID,ProviderFile.PLAYERNAME,ProviderFile.GOALS};
+        String[] projection = {ProviderFile._ID,ProviderFile.PLAYERNAME,ProviderFile.GOALS};
         c = cr.query(ProviderFile.CONTENT_URI, projection, null, null, null);
         if(c!=null){
             if(c.moveToFirst()){

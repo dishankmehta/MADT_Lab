@@ -23,8 +23,9 @@ public class ProviderFile extends ContentProvider {
     static final String DB_NAME = "Timepass";
     static final String DB_TABLE = "playerinfo";
     static final int DB_VERSION = 1;
-    static final String TABLE_CREATE = "CREATE TABLE \" + DB_TABLE +\" (id INTEGER PRIMARY KEY AUTOINCREMENT, player TEXT not null, goals TEXT not null);";
-    static final String ID = "id";
+    static final String TABLE_CREATE = "CREATE TABLE \" + DB_TABLE +\" (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                    "player VARCHAR(255) not null, goals VARCHAR(255) not null);";
+    static final String _ID = "_id";
     static final String PLAYERNAME = "player";
     static final String GOALS = "goals";
     static final String AUTHORITY = "com.example.dishank.provider.players";
@@ -57,9 +58,9 @@ public class ProviderFile extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(DB_TABLE);
         if (URIMATCHER.match(uri) == SINGLEROW)
-            queryBuilder.appendWhere(ID + " = " + uri.getPathSegments().get(1));
-        if (sortOrder==null || sortOrder=="")
-            sortOrder = "player";
+            queryBuilder.appendWhere(_ID + " = " + uri.getPathSegments().get(1));
+        /*if (sortOrder==null || sortOrder=="")
+            sortOrder = "player";*/
         Cursor c = queryBuilder.query(PlayersDB,projection,criteria,criteriaValues,null,null,sortOrder);
         c.setNotificationUri(getContext().getContentResolver(), uri);
         return c;
@@ -104,7 +105,7 @@ public class ProviderFile extends ContentProvider {
                 break;
             case SINGLEROW:
                 String id = uri.getPathSegments().get(1);
-                count = PlayersDB.delete(DB_TABLE, ID + " = " + id +(!TextUtils.isEmpty(criteria) ? " AND (" +criteria + ')': ""),criteriaValues);
+                count = PlayersDB.delete(DB_TABLE, _ID + " = " + id +(!TextUtils.isEmpty(criteria) ? " AND (" +criteria + ')': ""),criteriaValues);
                 break;
             default: throw new IllegalArgumentException("URI not found: " + uri);
         }
@@ -120,7 +121,7 @@ public class ProviderFile extends ContentProvider {
                 count = PlayersDB.update(DB_TABLE,values,criteria,criteriaValues);
                 break;
             case SINGLEROW:
-                count = PlayersDB.update(DB_TABLE, values, ID + " = " + uri.getPathSegments().get(1) +(!    TextUtils.isEmpty(criteria) ? " AND (" +criteria + ')': ""),criteriaValues);
+                count = PlayersDB.update(DB_TABLE, values, _ID + " = " + uri.getPathSegments().get(1) +(!    TextUtils.isEmpty(criteria) ? " AND (" +criteria + ')': ""),criteriaValues);
                 break;
             default: throw new IllegalArgumentException("URI not found: " + uri);
         }

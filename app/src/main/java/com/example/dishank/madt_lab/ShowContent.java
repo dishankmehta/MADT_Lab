@@ -1,17 +1,26 @@
 package com.example.dishank.madt_lab;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,12 +36,12 @@ public class ShowContent extends AppCompatActivity implements LoaderManager.Load
     private List<DataProviderContent> datalist = new ArrayList<>();
     ContentResolver cr;
     Cursor c;
+    Uri uri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_content);
-
 
         recyclerView = (RecyclerView) findViewById(R.id.contentlist);
 
@@ -47,10 +56,11 @@ public class ShowContent extends AppCompatActivity implements LoaderManager.Load
         adapter = new ContentListAdapter(datalist);
         recyclerView.setAdapter(adapter);
 
-
         setdata();
 
     }
+
+
 
     public void setdata(){
         cr = getApplicationContext().getContentResolver();
@@ -96,4 +106,6 @@ public class ShowContent extends AppCompatActivity implements LoaderManager.Load
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
+
 }

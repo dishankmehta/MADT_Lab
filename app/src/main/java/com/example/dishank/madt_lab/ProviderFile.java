@@ -23,12 +23,14 @@ public class ProviderFile extends ContentProvider {
     static final String DB_NAME = "Timepass";
     static final String DB_TABLE = "playerinfo";
     static final int DB_VERSION = 1;
-    static final String TABLE_CREATE = "CREATE TABLE \" + DB_TABLE +\" (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                    "player VARCHAR(255) not null, goals VARCHAR(255) not null);";
     static final String _ID = "_id";
     static final String PLAYERNAME = "player";
     static final String GOALS = "goals";
-    static final String AUTHORITY = "com.example.dishank.provider.players";
+    static final String TABLE_CREATE = "CREATE TABLE " + DB_TABLE + " ("+
+            _ID+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            PLAYERNAME+ " VARCHAR(255) NOT NULL, " +
+            GOALS+ " VARCHAR(255) NOT NULL);";
+    static final String AUTHORITY = "com.example.dishank.provider.Timepass";
     static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/playerinfo");
     static final int ALLROWS = 1;
     static final int SINGLEROW = 2;
@@ -61,7 +63,7 @@ public class ProviderFile extends ContentProvider {
             queryBuilder.appendWhere(_ID + " = " + uri.getPathSegments().get(1));
         /*if (sortOrder==null || sortOrder=="")
             sortOrder = "player";*/
-        Cursor c = queryBuilder.query(PlayersDB,projection,criteria,criteriaValues,null,null,sortOrder);
+        Cursor c = queryBuilder.query(PlayersDB,projection,criteria,criteriaValues,null,null,null);
         c.setNotificationUri(getContext().getContentResolver(), uri);
         return c;
     }
